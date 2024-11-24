@@ -1,11 +1,10 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recipe App</title>
+    <title>Recipes List</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -39,18 +38,25 @@
 </head>
 <body>
     <header>
-        <h1>Welcome to the Recipe App!</h1>
+        <h1>Recipe App</h1>
     </header>
     <main>
+        {% for object in object_list %}
         <section>
-            <h2>About</h2>
-            <p>
-                Discover and share recipes from around the world! Whether you're a beginner in the kitchen or an experienced chef, our Recipe App has something for everyone.
-                Start exploring today and turn your culinary dreams into reality.
-            </p>
+                <a href="{{object.get_absolute_url}}">
+                    <div>
+                        {% if object.pic_url %}
+                        <img src="{{object.pic_url}}"/>
+                        {% endif %}
+                    </div>
+                    <div>
+                        <p>{{object.name}}</p>
+                    </div>
+                </a>
+            </div>
         </section>
+        {% endfor %}
         <img src="{% static 'recipes/images/welcome.jpg' %}" alt="Assorted ingredients">
     </main>
-
 </body>
 </html>
