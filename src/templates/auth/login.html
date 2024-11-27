@@ -1,13 +1,30 @@
-<h1>Login</h1>
+{% load static %}
 
-{% if error_message %}
-    {{error_message}}
-{% endif %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>Recipe App</title>
+</head>
+<body>
+    <header>
+        <h1>Login</h1>
+    </header>
 
-<form action="" method="POST" >
-    {% csrf_token %}
+    <main>
+        {% if error_message %}
+            <p class="error-message">{{ error_message }}</p>
+        {% endif %}
 
-    {{form}}
-
-    <button type="submit" >Login</button>
-</form>
+        <form action="" method="POST" class="login-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-login">Login</button>
+        </form>
+        <br>
+        <img src="{% static 'recipes/images/welcome.jpg' %}" alt="Assorted ingredients">
+    </main>
+</body>
+</html>
