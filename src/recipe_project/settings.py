@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # recipe-project-related apps
     'recipes',
+    'custom_auth',
 ]
 
 MIDDLEWARE = [

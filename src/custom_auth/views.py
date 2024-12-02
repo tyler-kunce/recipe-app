@@ -23,8 +23,8 @@ def login_view(request):
         'form': form,
         'error_message': error_message
             }
-    return render(request, 'auth/login.html', context)
+    return render(request, 'custom_auth/login.html', context)
 
 def logout_view(request):
     logout(request)
-    return render(request, 'auth/success.html')
+    return render(request, 'custom_auth/success.html')
