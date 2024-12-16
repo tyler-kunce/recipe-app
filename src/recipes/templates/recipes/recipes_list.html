@@ -1,34 +1,88 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <title>Recipes List</title>
 </head>
+
 <body>
     <header>
         <h1>Recipe App</h1>
-        <br>
-        <a href="{% url 'custom_auth:logout' %}" >Logout</a>
+        <a href="{% url 'custom_auth:logout' %}">Logout</a>
     </header>
+
+    <section class="search-bar">
+        <p>Search for recipe name or ingredient:</p>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form.recipe_name }}
+            {{ form.chart_type }}
+            <button type="submit">Search</button>
+        </form>
+    </section>
+
+    {% if chart %}
+    <section class="data-analysis">
+        <h2>Data Analysis</h2>
+        <img src="data:image/png;base64, {{ chart|safe }}" alt="Data Analysis Chart">
+    </section>
+    {% endif %}
+
     <main class="recipe-grid">
-        {% for object in object_list %}
+        {% for recipe in recipes %}
         <div class="recipe-card">
-            <a href="{{object.get_absolute_url}}">
-                {% if object.pic.url %}
-                <img class="recipe-img" src="{{object.pic.url}}" alt="{{ object.name }}"/>
-                   {% endif %}
-                <div class="recipe-info">
-                    <p>{{object.name}}</p>
-                </div>
-            </a>
+            <h2 class="recipe-info"><a href="{% url 'recipes:detail' pk=recipe.id %}">{{ recipe.name }}</a></h2>
+            <img class="recipe-img" src="/media/{{ recipe.pic }}" alt="{{ recipe.name }}">
         </div>
         {% endfor %}
     </main>
+    
+    <!-- <main class="recipe-grid">
+        <div>
+            <p>Search for recipe name or ingredient:</p>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{ form.recipe_name }}
+                {{ form.chart_type }}
+                <button type="submit">Search</button>
+            </form>
+            <div>
+                {% if form.is_bound %}
+                <h2>Showing results for: {{ form.recipe_name.value }}</h2>
+                {% if recipes %}
+                {% for recipe in recipes %}
+                <div class="recipe-card">
+                    <h2 class="recipe-info"><a href="{% url 'recipes:detail' pk=recipe.id %}">{{ recipe.name }}</a></h2>
+                    <img class="recipe-img" src="/media/{{ recipe.pic }}" />
+                </div>
+                {% endfor %}
+                <div>
+                    {% if chart %}
+                    <h2>Data Analysis</h2>
+                    <img src="data:image/png;base64, {{ chart|safe }}">
+                    {% endif %}
+                </div>
+                {% else %}
+                <h3>No Data</h3>
+                {% endif %}
+                {% else %}
+                {% for recipe in recipes %}
+                <div class="recipe-card">
+                    <h2 class="recipe-info"><a href="{% url 'recipes:detail' pk=recipe.id %}">{{ recipe.name }}</a></h2>
+                    <img class="recipe-img" src="/media/{{ recipe.pic }}" />
+                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </main> -->
     <footer>
         <img src="{% static 'recipes/images/welcome.jpg' %}" alt="Assorted ingredients">
     </footer>
 </body>
+
 </html>
