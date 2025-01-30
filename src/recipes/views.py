@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from .models import Recipe
-from .forms import RecipesSearchForm
+from .forms import RecipesSearchForm, RecipesForm
 from .utils import get_chart, get_recipename_from_id
 
 import pandas as pd
@@ -11,6 +12,20 @@ import pandas as pd
 # Create your views here.
 def home(request):
     return render(request, 'recipes/recipes_home.html')
+
+def about_me(request):
+    return render(request, 'recipes/about_me.html')
+
+@login_required
+def add_recipe(request):
+    if request.method == 'POST':
+        form = RecipesForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('recipes/recipes_list.html')
+    else:
+        form = RecipesForm()
+    return render(request, 'recipes/recipes_add.html', {'form': form})
 
 class RecipeListView(LoginRequiredMixin, ListView):
     model = Recipe

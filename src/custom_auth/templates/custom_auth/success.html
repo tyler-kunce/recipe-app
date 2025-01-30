@@ -10,12 +10,17 @@
 </head>
 <body>
     <header>
-        <h1>You successfully logged out!</h1>
-        <br>
-        <a href="{% url 'custom_auth:login' %}" >Login Again?</a>
+        <h1>Recipe App</h1>
     </header>
     <main>
-        <img src="{% static 'recipes/images/welcome.jpg' %}" alt="Assorted ingredients">
+        <section class="container-section">
+            <h2>Successfully Logged Out!</h2>
+            <br>
+            <a href="{% url 'custom_auth:login' %}" class="about-link">Login Again?</a>    
+        </section>
     </main>
+    <footer>
+        <img src="{% static 'recipes/images/welcome.jpg' %}" alt="Assorted ingredients">
+    </footer>
 </body>
 </html>

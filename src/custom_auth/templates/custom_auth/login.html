@@ -14,15 +14,18 @@
     </header>
 
     <main>
-        {% if error_message %}
-            <p class="error-message">{{ error_message }}</p>
-        {% endif %}
+        <section class="container-section">
+            <h2>Log In</h2>
+            {% if error_message %}
+                <p class="error-message">{{ error_message }}</p>
+            {% endif %}
 
-        <form action="" method="POST" class="login-form">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-login">Login</button>
-        </form>
+            <form action="" method="POST" class="login-form">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-login">Login</button>
+            </form>
+        </section>
     </main>
     <footer>
         <img src="{% static 'recipes/images/welcome.jpg' %}" alt="Assorted ingredients">
