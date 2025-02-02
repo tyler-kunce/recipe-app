@@ -28,8 +28,11 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DJANGO_DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = [
+    'glacial-coast-99457-6e1d9e5870ab.herokuapp.com',
+    'localhost',  # For local development
+    '127.0.0.1',  # For local development
+]
 
 # Application definition
 
