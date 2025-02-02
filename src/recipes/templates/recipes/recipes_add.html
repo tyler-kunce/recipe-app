@@ -18,26 +18,28 @@
         </div>
     </header>
     <main>
-        <form>
+        <div class="form-container">
+            <form>
             {% csrf_token %}
-            <div>
-                <label for="recipe_name">Recipe Name: </label>
-                <input type="text" name="name" class="form-recipe" id="id_name" required>
-            </div>
-            <div>
-                <label for="recipe_cooking_time">Cooking Time (in minutes): </label>
-                <input type="number" name="cooking_time" class="form-recipe" id="id_cooking_time" required>
-            </div>
-            <div>
-                <label for="recipe_ingredients">Ingredients: </label>
-                <input name="ingredients" class="form-ingredients" id="id_ingredients" rows="6" required>
-            </div>
-            <div>
-                <label for="recipe_pic">Recipe Picture: </label>
-                <input type="file" name="pic" class="form-recipe-file" id="id_pic">
-            </div>
-            <button type="submit">Add Recipe</button>
-        </form>
+                <div>
+                    <label for="recipe_name">Recipe Name: </label>
+                    <input type="text" name="name" class="form-recipe" id="id_name" required>
+                </div>
+                <div>
+                    <label for="recipe_cooking_time">Cooking Time (in minutes): </label>
+                    <input type="number" name="cooking_time" class="form-recipe" id="id_cooking_time" required>
+                </div>
+                <div>
+                    <label for="recipe_ingredients">Ingredients: </label>
+                    <input type="text" name="ingredients" class="form-ingredients" id="id_ingredients" rows="6" required>
+                </div>
+                <div>
+                    <label for="recipe_pic">Recipe Picture: </label>
+                    <input type="file" name="pic" class="form-recipe-file" id="id_pic">
+                </div>
+                <button type="submit">Add Recipe</button>
+            </form>
+        </div>
     </main>
     <footer>
         <img src="{% static 'recipes/images/welcome.jpg' %}" alt="Assorted ingredients">
