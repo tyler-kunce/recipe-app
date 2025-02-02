@@ -1,1 +1,1 @@
-web: gunicorn recipe_project.wsgi:application --log-file -
+web: PYTHONPATH=src gunicorn recipe_project.wsgi:application --log-file -
