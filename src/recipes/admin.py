@@ -2,9 +2,9 @@ from django.contrib import admin
 from .models import Recipe
 
 class RecipeAdmin(admin.ModelAdmin):
-    list_display = ('name', 'cooking_time', 'ingredients', 'image_preview')
+    list_display = ('name', 'cooking_time', 'ingredients', 'difficulty', 'image_preview')
     search_fields = ('name',)
-    readonly_fields = ('image_preview',)
+    readonly_fields = ('difficulty', 'image_preview',)
 
     def image_preview(self, obj):
         if obj.pic:
