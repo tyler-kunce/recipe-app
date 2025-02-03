@@ -21,8 +21,11 @@ def add_recipe(request):
     if request.method == 'POST':
         form = RecipesForm(request.POST, request.FILES)
         if form.is_valid():
+            print("Form is valid")
             form.save()
             return redirect('recipes/recipes_list.html')
+        else:
+            print("Form errors:", form.errors)
     else:
         form = RecipesForm()
     return render(request, 'recipes/recipes_add.html', {'form': form})

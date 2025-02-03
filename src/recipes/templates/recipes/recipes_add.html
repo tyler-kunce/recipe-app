@@ -19,8 +19,9 @@
     </header>
     <main>
         <div class="form-container">
-            <form method="POST" action="{% url 'recipes:add' %}">
+            <form method="POST" action="{% url 'recipes:add' %}" enctype="multipart/form-data">
             {% csrf_token %}
+            {{ form.as_p }}
                 <div>
                     <label for="recipe_name">Recipe Name: </label>
                     <input type="text" name="name" class="form-recipe" id="id_name" required>
