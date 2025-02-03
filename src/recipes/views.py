@@ -23,7 +23,7 @@ def add_recipe(request):
         if form.is_valid():
             print("Form is valid")
             form.save()
-            return redirect('list')
+            return redirect('recipes:list')
         else:
             print("Form is not valid")
             print("Form errors:", form.errors)
