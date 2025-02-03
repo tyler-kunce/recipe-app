@@ -41,7 +41,7 @@
         {% for recipe in recipes %}
         <div class="recipe-card">
             <h2 class="recipe-info"><a href="{% url 'recipes:detail' pk=recipe.id %}">{{ recipe.name }}</a></h2>
-            <img class="recipe-img" src="/media/{{ recipe.pic }}" alt="{{ recipe.name }}">
+            <img class="recipe-img" src="{{ recipe.pic.url }}" alt="{{ recipe.name }}">
         </div>
         {% endfor %}
     </main>

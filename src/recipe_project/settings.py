@@ -89,7 +89,11 @@ import os
 import dj_database_url
 
 DATABASES = {
-    'default': dj_database_url.config(default=f"sqlite:///{os.path.join(BASE_DIR, 'db.sqlite3')}")
+    'default': dj_database_url.config(
+        default='sqlite:///' + str(BASE_DIR / 'db.sqlite3'),
+        conn_max_age=600,
+        conn_health_checks=True,
+    )
 }
 
 
@@ -136,19 +140,22 @@ STATICFILES_DIRS = [
 ]
 
 
-MEDIA_URL = '/media/'
+MEDIA_URL = 'https://res.cloudinary.com/{}/'.format(os.environ.get('CLOUDINARY_CLOUD_NAME'))
 MEDIA_ROOT = BASE_DIR / 'media'
 
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
+import os
 
 cloudinary.config(
-    cloud_name = os.environ.get('CLOUDINARY_CLOUD_NAME'),
-    api_key = os.environ.get('CLOUDINARY_API_KEY'),
-    api_secret = os.environ.get('CLOUDINARY_API_SECRET'),
+    cloud_name=os.environ.get('CLOUDINARY_CLOUD_NAME'),
+    api_key=os.environ.get('CLOUDINARY_API_KEY'),
+    api_secret=os.environ.get('CLOUDINARY_API_SECRET'),
     secure=True
 )
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
