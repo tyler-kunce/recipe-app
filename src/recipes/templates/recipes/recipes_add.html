@@ -19,7 +19,7 @@
     </header>
     <main>
         <div class="form-container">
-            <form method="POST" action="{% url 'add' %}">
+            <form method="POST" action="{% url 'recipes:add' %}">
             {% csrf_token %}
                 <div>
                     <label for="recipe_name">Recipe Name: </label>
