@@ -19,7 +19,7 @@
     </header>
     <main>
         <div class="form-container">
-            <form method="POST" action="{% url 'recipes:add' %}">
+            <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_p }}
                 <div>
