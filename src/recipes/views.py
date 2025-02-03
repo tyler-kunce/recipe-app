@@ -20,10 +20,14 @@ def about_me(request):
 def add_recipe(request):
     if request.method == 'POST':
         form = RecipesForm(request.POST, request.FILES)
+        print("Form is valid")
         if form.is_valid():
-            print("Form is valid")
-            form.save()
-            return redirect('recipes:list')
+            try:
+                form.save()
+                print("Form saved successfully")
+                return redirect('recipes:list')
+            except Exception as e:
+                print("Error saving form:", e)
         else:
             print("Form is not valid")
             print("Form errors:", form.errors)
